@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Home - Hospital Management System{% endblock %}
+{% block content %}
+<h2>Welcome to the Hospital Management System</h2>
+
+<div class="dashboard">
+    <div class="dashboard-item">
+        <h3>Quick Actions</h3>
+        <ul>
+            <li><a href="{{ url_for('add_patient') }}" class="quick-action-link">Add New Patient</a></li>
+            <li><a href="{{ url_for('schedule_appointment') }}" class="quick-action-link">Schedule Appointment</a></li>
+            <li><a href="{{ url_for('add_staff') }}" class="quick-action-link">Add Staff Member</a></li>
+            <li><a href="{{ url_for('add_inventory') }}" class="quick-action-link">Add Inventory Item</a></li>
+        </ul>
+    </div>
+
+    <div class="dashboard-item">
+        <h3>System Overview</h3>
+        <ul>
+            <li>Total Patients: {{ total_patients }}</li>
+            <li>Upcoming Appointments: {{ upcoming_appointments }}</li>
+            <li>Staff Members: {{ total_staff }}</li>
+            <li>Inventory Items: {{ total_inventory }}</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

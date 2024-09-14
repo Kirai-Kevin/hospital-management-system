@@ -1,0 +1,29 @@
+```
+hospital_management_system/
+│
+├── app.py
+├── requirements.txt
+│
+├── static/
+│   └── style.css
+│
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   ├── patients.html
+│   ├── appointments.html
+│   ├── add_patient.html
+│   ├── schedule_appointment.html
+│   ├── staff.html
+│   ├── add_staff.html
+│   ├── inventory.html
+│   ├── add_inventory.html
+│   ├── billing.html
+│   ├── add_billing.html
+│   ├── navigation.html
+│   ├── sorted_patients.html
+│   └── search_patient.html
+│
+└── instance/
+    └── hospital.db
+```

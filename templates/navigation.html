@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Navigation - Hospital Management System{% endblock %}
+{% block content %}
+<h2>Hospital Navigation</h2>
+<div class="navigation-actions">
+    <form method="POST" action="{{ url_for('add_location') }}">
+        <input type="text" name="location" placeholder="New Location" required>
+        <button type="submit" class="btn">Add Location</button>
+    </form>
+    <form method="POST" action="{{ url_for('add_path') }}">
+        <input type="text" name="start" placeholder="Start Location" required>
+        <input type="text" name="end" placeholder="End Location" required>
+        <button type="submit" class="btn">Add Path</button>
+    </form>
+</div>
+<h3>Hospital Layout</h3>
+<img src="{{ url_for('visualize_hospital_layout') }}" alt="Hospital Layout">
+<h3>Find Path</h3>
+<form id="pathForm">
+    <input type="text" id="pathStart" placeholder="Start Location" required>
+    <input type="text" id="pathEnd" placeholder="End Location" required>
+    <button type="submit" class="btn">Find Path</button>
+</form>
+<div id="pathResult"></div>
+
+<script>
+document.getElementById('pathForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    fetch('/navigation/find_path', {
+        method: 'POST',
+        body: new FormData(this)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.path) {
+            document.getElementById('pathResult').innerHTML = 'Path: ' + data.path.join(' -> ');
+        } else {
+            document.getElementById('pathResult').innerHTML = 'No path found';
+        }
+    });
+});
+</script>
+{% endblock %}

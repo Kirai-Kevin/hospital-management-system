@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Schedule Appointment - Hospital Management System{% endblock %}
+{% block content %}
+<h2>Schedule New Appointment</h2>
+
+<form method="POST">
+    <label for="appointment_id">Appointment ID:</label>
+    <input type="text" id="appointment_id" name="appointment_id" required><br>
+
+    <label for="patient_id">Patient ID:</label>
+    <input type="text" id="patient_id" name="patient_id" required><br>
+
+    <label for="doctor_id">Doctor:</label>
+    <select id="doctor_id" name="doctor_id" required>
+        <option value="">Select a doctor</option>
+        {% for doctor in doctors %}
+            <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="time">Appointment Time:</label>
+    <input type="datetime-local" id="time" name="time" required><br>
+
+    <input type="submit" value="Schedule Appointment">
+</form>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+        var patientId = document.getElementById('patient_id').value;
+        // You can add an AJAX call here to check if the patient exists
+        // For simplicity, we'll rely on the server-side check
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Appointments - Hospital Management System{% endblock %}
+
+{% block content %}
+<h2>Appointment Management</h2>
+<div class="appointment-actions">
+    <a href="{{ url_for('schedule_appointment') }}" class="btn">Schedule New Appointment</a>
+</div>
+<table class="appointment-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Patient ID</th>
+            <th>Doctor ID</th>
+            <th>Time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.id }}</td>
+            <td>{{ appointment.patient_id }}</td>
+            <td>{{ appointment.doctor_id }}</td>
+            <td>{{ appointment.time.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>
+                <form action="{{ url_for('cancel_appointment', appointment_id=appointment.id) }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn-small btn-danger" onclick="return confirm('Are you sure you want to cancel this appointment?')">Cancel</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

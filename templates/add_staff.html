@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Add Staff - Hospital Management System{% endblock %}
+{% block content %}
+<h2>Add New Staff Member</h2>
+<form method="POST" action="{{ url_for('add_staff') }}">
+    <label for="staff_id">Staff ID:</label>
+    <input type="text" id="staff_id" name="staff_id" required>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="role">Role:</label>
+    <input type="text" id="role" name="role" required>
+
+    <button type="submit" class="btn">Add Staff Member</button>
+</form>
+{% endblock %}
