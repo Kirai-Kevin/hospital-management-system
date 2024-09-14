@@ -1,3 +1,4 @@
+import os
 import heapq
 from collections import deque, defaultdict
 from datetime import datetime, date
@@ -464,7 +465,6 @@ def find_path():
     else:
         return jsonify({'error': 'No path found'}), 404
 
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Get the port from the environment or default to 5000
+    app.run(host="0.0.0.0", port=port, debug=True)  # Bind to 0.0.0.0 to be accessible from outside
